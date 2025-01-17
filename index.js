@@ -10,8 +10,8 @@ const port = process.env.PORT || 4040;
 const { BOT_TOKEN, SERVER_URL } = process.env;
 
 const TELEGRAM_API = `https://api.telegram.org/bot${BOT_TOKEN}`;
-const URI = `/webhook/${BOT_TOKEN}`;
-const WEBHOOK_URL = `${SERVER_URL}${URI}`;
+const URI = /webhook/${BOT_TOKEN};
+const WEBHOOK_URL = ${SERVER_URL}${URI};
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 
 const init = async () => {
     try {
-        const res = await axios.get(`${TELEGRAM_API}/setWebhook?url=${WEBHOOK_URL}`);
+        const res = await axios.get(${TELEGRAM_API}/setWebhook?url=${WEBHOOK_URL});
         console.log(res.data);
     } catch (error) {
         console.error('Error setting webhook:', error);
@@ -38,16 +38,16 @@ const community_link = "https://t.me/xbb_community";
 
 bot.start(async (ctx) => {
     const startPayload = ctx.startPayload;
-    const urlSent = `${web_link}?ref=${startPayload}`;
+    const urlSent = ${web_link}?ref=${startPayload};
     const user = ctx.message.from;
-    const userName = user.username ? `@${user.username}` : user.first_name;
+    const userName = user.username ? @${user.username} : user.first_name;
 
     try {
         // Send the image with a caption
         await ctx.replyWithPhoto(
             { source: 'public/like.jpg' }, // or provide a URL if it's hosted online
             {
-                caption: `*Hey, ${userName}! Welcome to NewCats!*\nHow cool is your Cat?\nGot friends, relatives, co-workers?\nBring them all into the game now.\nMore buddies, more coins.`,
+                caption: *Hey, ${userName}\n👋  Welcome to NewCats!*\nHow cool is your Cat?\nGot friends, relatives, co-workers?\nBring them all into the game now.\nMore buddies, more coins.,
                 parse_mode: 'Markdown', // Ensure markdown is used in the caption
                 reply_markup: {
                     inline_keyboard: [
@@ -59,9 +59,9 @@ bot.start(async (ctx) => {
         );
     } catch (error) {
         if (error.response && error.response.data && error.response.data.description === 'Forbidden: bot was blocked by the user') {
-            console.log(`Failed to send message to ${userName} (${user.id}): bot was blocked by the user.`);
+            console.log(Failed to send message to ${userName} (${user.id}): bot was blocked by the user.);
         } else {
-            console.error(`Failed to send message to ${userName} (${user.id}):`, error);
+            console.error(Failed to send message to ${userName} (${user.id}):, error);
         }
     }
 });
